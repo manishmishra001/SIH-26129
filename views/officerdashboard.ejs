@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Officer Dashboard - SETU</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #f093fb;
+            --secondary: #f5576c;
+            --success: #28a745;
+            --warning: #ffc300;
+            --danger: #dc3545;
+            --light: #f8f9fa;
+            --dark: #1a1a1a;
+            --border: #e0e0e0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--light);
+            color: var(--dark);
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            min-height: 100vh;
+        }
+
+        /* ============ SIDEBAR ============ */
+
+        .sidebar {
+            background: white;
+            border-right: 1px solid var(--border);
+            padding: 30px 0;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0 20px;
+            margin-bottom: 40px;
+            color: var(--primary);
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .sidebar-logo i {
+            font-size: 1.6rem;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .sidebar-menu li {
+            margin: 0;
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            color: #666666;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .sidebar-menu a:hover {
+            background: var(--light);
+            color: var(--primary);
+            border-left: 4px solid var(--primary);
+            padding-left: 16px;
+        }
+
+        .sidebar-menu a.active {
+            background: #fff0f5;
+            color: var(--primary);
+            border-left: 4px solid var(--primary);
+            padding-left: 16px;
+        }
+
+        .sidebar-menu i {
+            width: 20px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .sidebar-footer {
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            right: 0;
+            padding: 0 20px;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+        }
+
+        .logout-btn {
+            width: 100%;
+            padding: 10px 15px;
+            background: #ffe0e6;
+            color: #c2185b;
+            border: 1px solid #f093fb;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: #f093fb;
+            color: white;
+        }
+
+        /* ============ MAIN CONTENT ============ */
+
+        .main-content {
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            background: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            color: var(--dark);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-avatar {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .user-details h3 {
+            font-size: 0.95rem;
+            color: var(--dark);
+            margin-bottom: 2px;
+        }
+
+        .user-details p {
+            font-size: 0.85rem;
+            color: #666666;
+        }
+
+        /* ============ STATS ============ */
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--primary);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: #666666;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* ============ SECTION ============ */
+
+        .section {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title i {
+            color: var(--primary);
+            font-size: 1.3rem;
+        }
+
+        /* ============ APPLICATIONS TABLE ============ */
+
+        .applications-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .applications-table thead {
+            background: var(--light);
+        }
+
+        .applications-table th {
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--dark);
+            border-bottom: 2px solid var(--border);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .applications-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.95rem;
+        }
+
+        .applications-table tr:hover {
+            background: var(--light);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .status-submitted {
+            background: #cfe9ff;
+            color: #004085;
+        }
+
+        .status-verified {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-needinfo {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .action-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-right: 5px;
+        }
+
+        .action-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .action-btn.secondary {
+            background: var(--warning);
+            color: #1a1a1a;
+        }
+
+        .action-btn.secondary:hover {
+            background: #ffb700;
+        }
+
+        /* ============ WORKFLOW ============ */
+
+        .workflow-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+
+        .workflow-step {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .workflow-step:hover {
+            border-color: var(--primary);
+            background: white;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin: 0 auto 12px;
+        }
+
+        .step-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+
+        /* ============ RESPONSIVE ============ */
+
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: fixed;
+                left: -250px;
+                height: 100vh;
+                z-index: 1000;
+                transition: left 0.3s ease;
+            }
+
+            .sidebar.active {
+                left: 0;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .applications-table {
+                font-size: 0.85rem;
+            }
+
+            .applications-table th,
+            .applications-table td {
+                padding: 10px 8px;
+            }
+
+            .action-btn {
+                padding: 6px 10px;
+                font-size: 0.75rem;
+                margin-bottom: 5px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .workflow-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <i class="fas fa-network-wired"></i>
+                SETU
+            </div>
+
+            <ul class="sidebar-menu">
+                <li><a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="#"><i class="fas fa-inbox"></i> Assigned Applications</a></li>
+                <li><a href="#"><i class="fas fa-check-circle"></i> Beneficiary Records</a></li>
+                <li><a href="#"><i class="fas fa-search"></i> Verification</a></li>
+                <li><a href="#"><i class="fas fa-thumbs-up"></i> Approvals</a></li>
+                <li><a href="#"><i class="fas fa-exclamation-circle"></i> Grievances</a></li>
+                <li><a href="#"><i class="fas fa-link"></i> Inter-dept Requests</a></li>
+                <li><a href="#"><i class="fas fa-stream"></i> Workflow Status</a></li>
+                <li><a href="#"><i class="fas fa-bell"></i> Notifications</a></li>
+                <li><a href="#"><i class="fas fa-chart-bar"></i> Reports</a></li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <form action="/auth/logout" method="POST">
+                    <button type="submit" class="logout-btn">Logout</button>
+                </form>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            <div class="header">
+                <h1>Officer Dashboard</h1>
+                <div class="user-info">
+                    <div class="user-avatar">AK</div>
+                    <div class="user-details">
+                        <h3>Amit Kumar</h3>
+                        <p>Department B - Income/Eligibility</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STATS -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Pending Review</div>
+                </div>
+                <div class="stat-card" style="border-left-color: #4facfe;">
+                    <div class="stat-number" style="color: #4facfe;">8</div>
+                    <div class="stat-label">Verified</div>
+                </div>
+                <div class="stat-card" style="border-left-color: #43e97b;">
+                    <div class="stat-number" style="color: #43e97b;">5</div>
+                    <div class="stat-label">Approved</div>
+                </div>
+                <div class="stat-card" style="border-left-color: #ffc107;">
+                    <div class="stat-number" style="color: #ffc107;">3</div>
+                    <div class="stat-label">Need Info</div>
+                </div>
+            </div>
+
+            <!-- APPLICATION WORKFLOW -->
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-tasks"></i> Application Processing Workflow
+                </div>
+                <div class="workflow-steps">
+                    <div class="workflow-step">
+                        <div class="step-number">1</div>
+                        <div class="step-name">Submitted</div>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-number">2</div>
+                        <div class="step-name">Verification</div>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-number">3</div>
+                        <div class="step-name">Approval</div>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-number">4</div>
+                        <div class="step-name">Completed</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ASSIGNED APPLICATIONS -->
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-inbox"></i> Applications Assigned to You
+                </div>
+                <table class="applications-table">
+                    <thead>
+                        <tr>
+                            <th>Application ID</th>
+                            <th>Citizen Name</th>
+                            <th>Scheme</th>
+                            <th>Status</th>
+                            <th>Submitted</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>#APP-2026-001</strong></td>
+                            <td>Rajesh Sharma</td>
+                            <td>PM-KISAN Scheme</td>
+                            <td><span class="status-badge status-submitted">Submitted</span></td>
+                            <td>15 Aug 2026</td>
+                            <td>
+                                <button class="action-btn">View</button>
+                                <button class="action-btn secondary">Verify</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>#APP-2026-002</strong></td>
+                            <td>Priya Singh</td>
+                            <td>Aadhar Linked Scheme</td>
+                            <td><span class="status-badge status-verified">Verified</span></td>
+                            <td>14 Aug 2026</td>
+                            <td>
+                                <button class="action-btn">View</button>
+                                <button class="action-btn secondary">Approve</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>#APP-2026-003</strong></td>
+                            <td>Anant Patel</td>
+                            <td>Income Verification</td>
+                            <td><span class="status-badge status-needinfo">Need Info</span></td>
+                            <td>12 Aug 2026</td>
+                            <td>
+                                <button class="action-btn">View</button>
+                                <button class="action-btn secondary">Request Docs</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>#APP-2026-004</strong></td>
+                            <td>Deepak Kumar</td>
+                            <td>Beneficiary Scheme</td>
+                            <td><span class="status-badge status-verified">Verified</span></td>
+                            <td>10 Aug 2026</td>
+                            <td>
+                                <button class="action-btn">View</button>
+                                <button class="action-btn secondary">Approve</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- RECENT ACTIVITY -->
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-history"></i> Recent Activity
+                </div>
+                <div style="display: grid; gap: 12px;">
+                    <div style="padding: 15px; background: #f0f4ff; border-left: 4px solid var(--primary); border-radius: 6px;">
+                        <p><strong>Application #APP-2026-045 Approved</strong></p>
+                        <small style="color: #666666;">1 hour ago</small>
+                    </div>
+                    <div style="padding: 15px; background: #fff3cd; border-left: 4px solid var(--warning); border-radius: 6px;">
+                        <p><strong>Document Requested from Citizen (Aadhaar ID) for #APP-2026-043</strong></p>
+                        <small style="color: #666666;">3 hours ago</small>
+                    </div>
+                    <div style="padding: 15px; background: #d4edda; border-left: 4px solid var(--success); border-radius: 6px;">
+                        <p><strong>Verification Complete for #APP-2026-042</strong></p>
+                        <small style="color: #666666;">5 hours ago</small>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- <script>
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('officerSession');
+                window.location.href = '/';
+            }
+        }
+    </script> -->
+</body>
+</html>

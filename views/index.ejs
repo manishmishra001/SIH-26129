@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SETU - Secure Government Services Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-network-wired"></i>
+                <span>SETU</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#architecture" class="nav-link">Architecture</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="/auth/citizenlogin" class="nav-link btn-primary">Login</a></li>
+            </ul>
+            <div class="hamburger"> 
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Seamless Government Services Integration</h1>
+                <p>A secure digital bridge connecting government departments to provide coordinated services without replacing existing systems</p>
+                <div class="hero-buttons">
+                    <a href="/auth/citizenlogin" class="btn btn-primary btn-lg">
+                        <i class="fas fa-user"></i> Citizen Portal
+                    </a>
+                    <a href="/auth/officerlogin" class="btn btn-secondary btn-lg">
+                        <i class="fas fa-briefcase"></i> Officer Portal
+                    </a>
+                </div>
+            </div>
+            <div class="hero-illustration">
+                <div class="network-diagram">
+                    <div class="dept dept-1">
+                        <i class="fas fa-users"></i>
+                        <p>Citizens</p>
+                    </div>
+                    <div class="dept dept-2">
+                        <i class="fas fa-building"></i>
+                        <p>Department A</p>
+                    </div>
+                    <div class="dept dept-3">
+                        <i class="fas fa-file"></i>
+                        <p>Department B</p>
+                    </div>
+                    <div class="dept dept-4">
+                        <i class="fas fa-cog"></i>
+                        <p>Department C</p>
+                    </div>
+                    <svg class="connections" viewBox="0 0 400 300">
+                        <line x1="100" y1="150" x2="200" y2="150" stroke="#007bff" stroke-width="2"/>
+                        <line x1="200" y1="150" x2="300" y2="100" stroke="#007bff" stroke-width="2"/>
+                        <line x1="200" y1="150" x2="300" y2="150" stroke="#007bff" stroke-width="2"/>
+                        <line x1="200" y1="150" x2="300" y2="200" stroke="#007bff" stroke-width="2"/>
+                        <circle cx="200" cy="150" r="8" fill="#007bff"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About SETU</h2>
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Secure & Private</h3>
+                    <p>End-to-end encryption and consent-based data sharing ensures your information stays protected</p>
+                </div>
+                <div class="about-card">
+                    <div class="icon">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <h3>Connected Systems</h3>
+                    <p>Bridges isolated government departments enabling real-time information exchange and coordination</p>
+                </div>
+                <div class="about-card">
+                    <div class="icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Fast & Efficient</h3>
+                    <p>Eliminates redundant document submissions by securely sharing verified information across departments</p>
+                </div>
+                <div class="about-card">
+                    <div class="icon">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                    <h3>Transparent Process</h3>
+                    <p>Real-time application tracking and status updates keep you informed at every step</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2>Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Unified Citizen Portal</h3>
+                    <p>Single dashboard to apply for government schemes, track applications, and manage documents</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Consent Management</h3>
+                    <p>Control exactly who can access your information and revoke permissions anytime</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Real-time Tracking</h3>
+                    <p>Get instant updates on your application status across multiple departments</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile Accessible</h3>
+                    <p>Access SETU from any device, anywhere. Responsive design works on all screens</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-check-double"></i>
+                    </div>
+                    <h3>Smart Verification</h3>
+                    <p>AI-powered duplicate detection and data quality checks ensure accuracy</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Compliance & Auditing</h3>
+                    <p>Complete audit trails and compliance reporting for accountability</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section id="architecture" class="architecture">
+        <div class="container">
+            <h2>System Architecture</h2>
+            <div class="arch-diagram">
+                <div class="layer">
+                    <div class="layer-title">User Interface Layer</div>
+                    <div class="layer-content">
+                        <span class="arch-item">Citizen Portal</span>
+                        <span class="arch-item">Officer Portal</span>
+                        <span class="arch-item">Admin Dashboard</span>
+                    </div>
+                </div>
+                <div class="layer-arrow">↓</div>
+                <div class="layer">
+                    <div class="layer-title">Application Layer</div>
+                    <div class="layer-content">
+                        <span class="arch-item">Service Gateway</span>
+                        <span class="arch-item">Workflow Engine</span>
+                        <span class="arch-item">Notification Service</span>
+                    </div>
+                </div>
+                <div class="layer-arrow">↓</div>
+                <div class="layer">
+                    <div class="layer-title">Integration Layer</div>
+                    <div class="layer-content">
+                        <span class="arch-item">API Gateway</span>
+                        <span class="arch-item">Data Mapping</span>
+                        <span class="arch-item">System Connectors</span>
+                    </div>
+                </div>
+                <div class="layer-arrow">↓</div>
+                <div class="layer">
+                    <div class="layer-title">Government Systems</div>
+                    <div class="layer-content">
+                        <span class="arch-item">Dept A - Citizens</span>
+                        <span class="arch-item">Dept B - Income</span>
+                        <span class="arch-item">Dept C - Schemes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Address</h4>
+                            <p>Government of India<br>New Delhi, India</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+91 (11) 2300-2000</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>support@setu.gov.in</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>SETU</h4>
+                    <p>Secure Government Services Integration Platform</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Portals</h4>
+                    <ul>
+                        <li><a href="/auth/citizenlogin">Citizen Login</a></li>
+                        <li><a href="/auth/officerlogin">Officer Login</a></li>
+                        <li><a href="/auth/adminlogin">Admin Login</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SETU Platform. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>

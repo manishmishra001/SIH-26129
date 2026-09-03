@@ -1,0 +1,2307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JANSEVA | Digital Public Service Hub</title>
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <style>
+        /* =========================
+           BASIC RESET
+        ========================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f7f9fc;
+            color: #172033;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            width: min(1180px, 92%);
+            margin: auto;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================== */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.96);
+            border-bottom: 1px solid #e7eaf0;
+            backdrop-filter: blur(12px);
+        }
+
+        .nav-inner {
+            height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: #1456d9;
+            color: white;
+            display: grid;
+            place-items: center;
+            font-size: 20px;
+            box-shadow: 0 8px 20px rgba(20, 86, 217, 0.2);
+        }
+
+        .brand-text strong {
+            display: block;
+            font-size: 21px;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-text span {
+            font-size: 11px;
+            color: #738099;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            font-size: 14px;
+            font-weight: 600;
+            color: #59657a;
+            transition: 0.25s;
+        }
+
+        .nav-menu a:hover {
+            color: #1456d9;
+        }
+
+        .login-btn {
+            background: #1456d9;
+            color: white !important;
+            padding: 11px 20px;
+            border-radius: 9px;
+        }
+
+        .login-btn:hover {
+            background: #0e46b8;
+        }
+
+        .hamburger {
+            display: none;
+            border: 0;
+            background: transparent;
+            font-size: 23px;
+            cursor: pointer;
+            color: #172033;
+        }
+
+        /* =========================
+           HERO
+        ========================== */
+
+        .hero {
+            padding: 95px 0 80px;
+            background:
+                radial-gradient(circle at 85% 20%, #dce8ff 0, transparent 28%),
+                linear-gradient(135deg, #ffffff, #f4f7fc);
+            overflow: hidden;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 65px;
+            align-items: center;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 13px;
+            background: #eaf1ff;
+            color: #1456d9;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 5vw, 68px);
+            line-height: 1.04;
+            letter-spacing: -2.5px;
+            max-width: 680px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 span {
+            color: #1456d9;
+        }
+
+        .hero-description {
+            max-width: 610px;
+            color: #657188;
+            font-size: 17px;
+            margin-bottom: 32px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 13px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            padding: 14px 22px;
+            border-radius: 9px;
+            font-size: 14px;
+            font-weight: bold;
+            transition: 0.25s;
+        }
+
+        .btn-primary {
+            background: #1456d9;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            background: #0e46b8;
+        }
+
+        .btn-light {
+            background: white;
+            color: #263247;
+            border: 1px solid #dfe4ec;
+        }
+
+        .btn-light:hover {
+            border-color: #1456d9;
+            color: #1456d9;
+        }
+
+        /* HERO VISUAL */
+
+        .service-board {
+            position: relative;
+            min-height: 410px;
+            background: white;
+            border: 1px solid #e5e9f0;
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: 0 25px 70px rgba(38, 53, 80, 0.12);
+        }
+
+        .board-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #edf0f5;
+        }
+
+        .board-title {
+            font-weight: bold;
+        }
+
+        .online {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #198754;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .online i {
+            font-size: 8px;
+        }
+
+        .search-box {
+            margin: 22px 0;
+            background: #f5f7fa;
+            border: 1px solid #e6eaf0;
+            border-radius: 10px;
+            padding: 13px 15px;
+            display: flex;
+            gap: 10px;
+            color: #8a94a6;
+            font-size: 13px;
+        }
+
+        .service-list {
+            display: grid;
+            gap: 10px;
+        }
+
+        .service {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 14px;
+            border: 1px solid #edf0f4;
+            border-radius: 12px;
+            transition: 0.25s;
+        }
+
+        .service:hover {
+            transform: translateX(5px);
+            border-color: #b9cdf7;
+            background: #f9fbff;
+        }
+
+        .service-icon {
+            width: 39px;
+            height: 39px;
+            display: grid;
+            place-items: center;
+            border-radius: 9px;
+            background: #eaf1ff;
+            color: #1456d9;
+        }
+
+        .service h4 {
+            font-size: 14px;
+            margin-bottom: 2px;
+        }
+
+        .service p {
+            font-size: 11px;
+            color: #8a94a6;
+        }
+
+        .service-arrow {
+            margin-left: auto;
+            color: #a0a8b7;
+        }
+
+        /* =========================
+           QUICK STATS
+        ========================== */
+
+        .stats {
+            margin-top: -35px;
+            position: relative;
+            z-index: 3;
+        }
+
+        .stats-grid {
+            background: white;
+            border: 1px solid #e7eaf0;
+            border-radius: 16px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            box-shadow: 0 12px 35px rgba(35, 49, 75, 0.08);
+        }
+
+        .stat {
+            padding: 23px;
+            text-align: center;
+            border-right: 1px solid #edf0f4;
+        }
+
+        .stat:last-child {
+            border-right: none;
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 25px;
+            color: #1456d9;
+        }
+
+        .stat span {
+            font-size: 12px;
+            color: #7b8699;
+        }
+
+        /* =========================
+           COMMON SECTION
+        ========================== */
+
+        section {
+            padding: 100px 0;
+        }
+
+        .section-heading {
+            max-width: 680px;
+            margin-bottom: 45px;
+        }
+
+        .section-heading.center {
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .eyebrow {
+            display: block;
+            color: #1456d9;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .section-heading h2 {
+            font-size: 39px;
+            line-height: 1.15;
+            letter-spacing: -1px;
+            margin-bottom: 14px;
+        }
+
+        .section-heading p {
+            color: #737f92;
+            font-size: 15px;
+        }
+
+        /* =========================
+           ABOUT
+        ========================== */
+
+        .about {
+            background: white;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 65px;
+            align-items: center;
+        }
+
+        .about-text p {
+            color: #68748a;
+            margin-bottom: 18px;
+        }
+
+        .about-list {
+            list-style: none;
+            margin-top: 25px;
+            display: grid;
+            gap: 13px;
+        }
+
+        .about-list li {
+            display: flex;
+            gap: 10px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .about-list i {
+            color: #1456d9;
+            margin-top: 4px;
+        }
+
+        .about-card {
+            background: #f5f8fd;
+            border-radius: 22px;
+            padding: 35px;
+            border: 1px solid #e4eaf3;
+        }
+
+        .about-card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+
+        .about-card-icon {
+            width: 58px;
+            height: 58px;
+            border-radius: 15px;
+            display: grid;
+            place-items: center;
+            background: #1456d9;
+            color: white;
+            font-size: 23px;
+        }
+
+        .verified {
+            padding: 7px 11px;
+            border-radius: 20px;
+            background: #e6f7ed;
+            color: #198754;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .process-line {
+            display: grid;
+            gap: 17px;
+        }
+
+        .process {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .process-number {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: white;
+            border: 1px solid #dfe5ef;
+            display: grid;
+            place-items: center;
+            color: #1456d9;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .process span {
+            font-size: 13px;
+            color: #536078;
+        }
+
+        /* =========================
+           SERVICES
+        ========================== */
+
+        .services {
+            background: #f7f9fc;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .service-card {
+            background: white;
+            border: 1px solid #e6eaf0;
+            border-radius: 15px;
+            padding: 27px;
+            transition: 0.25s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(36, 50, 78, 0.09);
+            border-color: #c7d7f5;
+        }
+
+        .service-card-icon {
+            width: 48px;
+            height: 48px;
+            display: grid;
+            place-items: center;
+            background: #edf3ff;
+            color: #1456d9;
+            border-radius: 11px;
+            margin-bottom: 20px;
+            font-size: 19px;
+        }
+
+        .service-card h3 {
+            font-size: 17px;
+            margin-bottom: 8px;
+        }
+
+        .service-card p {
+            color: #7a8496;
+            font-size: 13px;
+        }
+
+        .service-card a {
+            display: inline-flex;
+            gap: 6px;
+            color: #1456d9;
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 18px;
+        }
+
+        /* =========================
+           HOW IT WORKS
+        ========================== */
+
+        .how-it-works {
+            background: white;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            position: relative;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 55px;
+            height: 55px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: #1456d9;
+            color: white;
+            display: grid;
+            place-items: center;
+            font-weight: bold;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step h3 {
+            font-size: 16px;
+            margin-bottom: 7px;
+        }
+
+        .step p {
+            color: #7b8597;
+            font-size: 13px;
+        }
+
+        /* =========================
+           SECURITY
+        ========================== */
+
+        .security {
+            background: #12213b;
+            color: white;
+        }
+
+        .security-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .security .eyebrow {
+            color: #8db1ff;
+        }
+
+        .security h2 {
+            font-size: 39px;
+            line-height: 1.15;
+            margin-bottom: 18px;
+        }
+
+        .security-text {
+            color: #b8c4d7;
+            font-size: 15px;
+        }
+
+        .security-points {
+            display: grid;
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        .security-point {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #d9e1ee;
+            font-size: 13px;
+        }
+
+        .security-point i {
+            color: #77a0ff;
+        }
+
+        .security-box {
+            background: #1b2d4c;
+            border: 1px solid #2b4164;
+            border-radius: 20px;
+            padding: 30px;
+        }
+
+        .security-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 0;
+            border-bottom: 1px solid #304563;
+        }
+
+        .security-row:last-child {
+            border-bottom: none;
+        }
+
+        .security-row-left {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .security-row-icon {
+            width: 40px;
+            height: 40px;
+            display: grid;
+            place-items: center;
+            border-radius: 9px;
+            background: #263c60;
+            color: #8db1ff;
+        }
+
+        .security-row h4 {
+            font-size: 13px;
+        }
+
+        .security-row p {
+            font-size: 10px;
+            color: #91a0b7;
+        }
+
+        .status {
+            color: #6de09d;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        /* =========================
+           PORTALS
+        ========================== */
+
+        .portals {
+            background: #f7f9fc;
+        }
+
+        .portal-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .portal {
+            background: white;
+            border: 1px solid #e5e9f0;
+            border-radius: 17px;
+            padding: 30px;
+        }
+
+        .portal i {
+            font-size: 25px;
+            color: #1456d9;
+            margin-bottom: 17px;
+        }
+
+        .portal h3 {
+            margin-bottom: 8px;
+        }
+
+        .portal p {
+            font-size: 13px;
+            color: #7b8596;
+            margin-bottom: 22px;
+        }
+
+        .portal .btn {
+            width: 100%;
+        }
+
+        /* =========================
+           CONTACT
+        ========================== */
+
+        .contact {
+            background: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 50px;
+        }
+
+        .contact-info {
+            padding-top: 10px;
+        }
+
+        .contact-info h3 {
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        .contact-info > p {
+            color: #788397;
+            font-size: 14px;
+            margin-bottom: 28px;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 13px;
+            margin-bottom: 20px;
+        }
+
+        .contact-item-icon {
+            width: 40px;
+            height: 40px;
+            background: #edf3ff;
+            color: #1456d9;
+            border-radius: 9px;
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+        }
+
+        .contact-item h4 {
+            font-size: 13px;
+            margin-bottom: 2px;
+        }
+
+        .contact-item p {
+            color: #788397;
+            font-size: 12px;
+        }
+
+        .contact-form {
+            background: #f7f9fc;
+            border: 1px solid #e5e9f0;
+            border-radius: 18px;
+            padding: 30px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            border: 1px solid #dfe4ec;
+            background: white;
+            border-radius: 8px;
+            padding: 12px 13px;
+            font-family: inherit;
+            outline: none;
+            font-size: 13px;
+            transition: 0.2s;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: #1456d9;
+            box-shadow: 0 0 0 3px rgba(20, 86, 217, 0.08);
+        }
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+            background: #0d1728;
+            color: white;
+            padding: 55px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr 1fr;
+            gap: 35px;
+            padding-bottom: 40px;
+        }
+
+        .footer-brand p {
+            color: #8995a9;
+            font-size: 13px;
+            max-width: 280px;
+            margin-top: 12px;
+        }
+
+        footer h4 {
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        footer ul {
+            list-style: none;
+            display: grid;
+            gap: 9px;
+        }
+
+        footer li,
+        footer a {
+            color: #8995a9;
+            font-size: 12px;
+            transition: 0.2s;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+
+        .socials {
+            display: flex;
+            gap: 9px;
+        }
+
+        .socials a {
+            width: 35px;
+            height: 35px;
+            display: grid;
+            place-items: center;
+            border: 1px solid #2b374b;
+            border-radius: 8px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #263246;
+            padding-top: 18px;
+            color: #6f7b8e;
+            font-size: 11px;
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        /* =========================
+           TOAST MESSAGE
+        ========================== */
+
+        .toast {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            background: #12213b;
+            color: white;
+            padding: 14px 18px;
+            border-radius: 9px;
+            font-size: 13px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+            transform: translateY(100px);
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.3s;
+            z-index: 2000;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================== */
+
+        @media (max-width: 900px) {
+
+            .nav-menu {
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 76px;
+                background: white;
+                border-bottom: 1px solid #e5e9f0;
+                padding: 15px 5%;
+                display: none;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-menu li {
+                border-bottom: 1px solid #f0f2f5;
+            }
+
+            .nav-menu a {
+                display: block;
+                padding: 13px 5px;
+            }
+
+            .login-btn {
+                text-align: center;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero-grid,
+            .about-grid,
+            .security-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding-top: 65px;
+            }
+
+            .services-grid,
+            .portal-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .steps {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 35px;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            section {
+                padding: 70px 0;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .hero-description {
+                font-size: 15px;
+            }
+
+            .service-board {
+                min-height: auto;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat {
+                border-bottom: 1px solid #edf0f4;
+            }
+
+            .stat:nth-child(2) {
+                border-right: none;
+            }
+
+            .services-grid,
+            .portal-grid,
+            .steps,
+            .form-row,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-heading h2,
+            .security h2 {
+                font-size: 31px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+
+    <nav class="navbar">
+        <div class="container nav-inner">
+
+            <a href="#home" class="brand">
+                <div class="brand-icon">
+                    <i class="fa-solid fa-building-columns"></i>
+                </div>
+
+                <div class="brand-text">
+                    <strong>JANSEVA</strong>
+                    <span>Public Service Hub</span>
+                </div>
+            </a>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">Overview</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#process">How It Works</a></li>
+                <li><a href="#contact">Help</a></li>
+
+                <li>
+                    <a href="/auth/citizenlogin" class="login-btn">
+                        Sign In
+                    </a>
+                </li>
+            </ul>
+
+            <button class="hamburger" id="menuButton">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+        </div>
+    </nav>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <main>
+
+        <section class="hero" id="home">
+
+            <div class="container hero-grid">
+
+                <div>
+
+                    <div class="hero-tag">
+                        <i class="fa-solid fa-circle-check"></i>
+                        One place for essential public services
+                    </div>
+
+                    <h1>
+                        Government services,
+                        <span>made easier.</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        JANSEVA brings frequently used public services into
+                        one simple digital space. Find a service, submit your
+                        request and follow its progress without visiting
+                        multiple offices.
+                    </p>
+
+                    <div class="hero-actions">
+
+                        <a href="/auth/citizenlogin" class="btn btn-primary">
+                            <i class="fa-solid fa-arrow-right"></i>
+                            Start a Service
+                        </a>
+
+                        <a href="/auth/officerlogin" class="btn btn-light">
+                            OFFICER LOGIN
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Dashboard style illustration -->
+
+                <div class="service-board">
+
+                    <div class="board-header">
+
+                        <div>
+                            <div class="board-title">
+                                Service Directory
+                            </div>
+                            <small style="color:#8a94a6;">
+                                Find what you need
+                            </small>
+                        </div>
+
+                        <div class="online">
+                            <i class="fa-solid fa-circle"></i>
+                            Online
+                        </div>
+
+                    </div>
+
+                    <div class="search-box">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        Search public services...
+                    </div>
+
+                    <div class="service-list">
+
+                        <div class="service">
+                            <div class="service-icon">
+                                <i class="fa-solid fa-id-card"></i>
+                            </div>
+
+                            <div>
+                                <h4>Identity & Certificates</h4>
+                                <p>Apply, verify or track documents</p>
+                            </div>
+
+                            <i class="fa-solid fa-chevron-right service-arrow"></i>
+                        </div>
+
+
+                        <div class="service">
+                            <div class="service-icon">
+                                <i class="fa-solid fa-house"></i>
+                            </div>
+
+                            <div>
+                                <h4>Property & Residence</h4>
+                                <p>Access local civic services</p>
+                            </div>
+
+                            <i class="fa-solid fa-chevron-right service-arrow"></i>
+                        </div>
+
+
+                        <div class="service">
+                            <div class="service-icon">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                            </div>
+
+                            <div>
+                                <h4>Education Support</h4>
+                                <p>Discover schemes and applications</p>
+                            </div>
+
+                            <i class="fa-solid fa-chevron-right service-arrow"></i>
+                        </div>
+
+
+                        <div class="service">
+                            <div class="service-icon">
+                                <i class="fa-solid fa-hand-holding-heart"></i>
+                            </div>
+
+                            <div>
+                                <h4>Welfare & Benefits</h4>
+                                <p>Check eligible public programs</p>
+                            </div>
+
+                            <i class="fa-solid fa-chevron-right service-arrow"></i>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             STATS
+        ========================== -->
+
+        <div class="stats">
+
+            <div class="container">
+
+                <div class="stats-grid">
+
+                    <div class="stat">
+                        <strong>24/7</strong>
+                        <span>Digital Access</span>
+                    </div>
+
+                    <div class="stat">
+                        <strong>01</strong>
+                        <span>Unified Platform</span>
+                    </div>
+
+                    <div class="stat">
+                        <strong>100%</strong>
+                        <span>Request Tracking</span>
+                    </div>
+
+                    <div class="stat">
+                        <strong>Secure</strong>
+                        <span>Data Handling</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             ABOUT
+        ========================== -->
+
+        <section class="about" id="about">
+
+            <div class="container">
+
+                <div class="about-grid">
+
+                    <div class="about-text">
+
+                        <div class="section-heading">
+
+                            <span class="eyebrow">
+                                About JANSEVA
+                            </span>
+
+                            <h2>
+                                Less running around.
+                                More getting things done.
+                            </h2>
+
+                            <p>
+                                Public services often involve different
+                                departments, documents and application
+                                processes. JANSEVA is designed to make that
+                                experience easier to understand and follow.
+                            </p>
+
+                        </div>
+
+                        <p>
+                            Instead of searching through different websites
+                            and wondering about application progress, citizens
+                            can use one interface to discover services and
+                            manage their requests.
+                        </p>
+
+                        <ul class="about-list">
+
+                            <li>
+                                <i class="fa-solid fa-check"></i>
+                                Clear service information
+                            </li>
+
+                            <li>
+                                <i class="fa-solid fa-check"></i>
+                                Simple digital applications
+                            </li>
+
+                            <li>
+                                <i class="fa-solid fa-check"></i>
+                                Application status visibility
+                            </li>
+
+                            <li>
+                                <i class="fa-solid fa-check"></i>
+                                Designed for mobile and desktop
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+
+                    <div class="about-card">
+
+                        <div class="about-card-top">
+
+                            <div class="about-card-icon">
+                                <i class="fa-solid fa-route"></i>
+                            </div>
+
+                            <span class="verified">
+                                SIMPLE PROCESS
+                            </span>
+
+                        </div>
+
+                        <h3 style="margin-bottom:22px;">
+                            Your service journey
+                        </h3>
+
+                        <div class="process-line">
+
+                            <div class="process">
+                                <div class="process-number">01</div>
+                                <span>Choose the service you need</span>
+                            </div>
+
+                            <div class="process">
+                                <div class="process-number">02</div>
+                                <span>Complete the online request</span>
+                            </div>
+
+                            <div class="process">
+                                <div class="process-number">03</div>
+                                <span>Submit required information</span>
+                            </div>
+
+                            <div class="process">
+                                <div class="process-number">04</div>
+                                <span>Track progress until completion</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SERVICES
+        ========================== -->
+
+        <section class="services" id="services">
+
+            <div class="container">
+
+                <div class="section-heading center">
+
+                    <span class="eyebrow">
+                        Service Directory
+                    </span>
+
+                    <h2>
+                        What can you do here?
+                    </h2>
+
+                    <p>
+                        Explore common categories and access the service
+                        information you are looking for.
+                    </p>
+
+                </div>
+
+
+                <div class="services-grid">
+
+                    <div class="service-card">
+
+                        <div class="service-card-icon">
+                            <i class="fa-solid fa-file-lines"></i>
+                        </div>
+
+                        <h3>Certificates</h3>
+
+                        <p>
+                            Find information about certificates,
+                            documentation and related applications.
+                        </p>
+
+                        <a href="#">
+                            View category
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+
+                    </div>
+
+
+                    <div class="service-card">
+
+                        <div class="service-card-icon">
+                            <i class="fa-solid fa-building"></i>
+                        </div>
+
+                        <h3>Civic Services</h3>
+
+                        <p>
+                            Access information related to local public
+                            facilities and civic requests.
+                        </p>
+
+                        <a href="#">
+                            View category
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+
+                    </div>
+
+
+                    <div class="service-card">
+
+                        <div class="service-card-icon">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+
+                        <h3>Education</h3>
+
+                        <p>
+                            Discover educational assistance, scholarships
+                            and public education programs.
+                        </p>
+
+                        <a href="#">
+                            View category
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+
+                    </div>
+
+
+                    <div class="service-card">
+
+                        <div class="service-card-icon">
+                            <i class="fa-solid fa-heart-pulse"></i>
+                        </div>
+
+                        <h3>Health Services</h3>
+
+                        <p>
+                            Find public health programs and information
+                            relevant to citizens.
+                        </p>
+
+                        <a href="#">
+                            View category
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+
+                    </div>
+
+
+                    <div class="service-card">
+
+                        <div class="service-card-icon">
+                            <i class="fa-solid fa-briefcase"></i>
+                        </div>
+
+                        <h3>Employment</h3>
+
+                        <p>
+                            Explore employment support, training and
+                            government opportunities.
+                        </p>
+
+                        <a href="#">
+                            View category
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+
+                    </div>
+
+
+                    <div class="service-card">
+
+                        <div class="service-card-icon">
+                            <i class="fa-solid fa-people-group"></i>
+                        </div>
+
+                        <h3>Social Welfare</h3>
+
+                        <p>
+                            Learn about welfare programs and assistance
+                            available through public institutions.
+                        </p>
+
+                        <a href="#">
+                            View category
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             HOW IT WORKS
+        ========================== -->
+
+        <section class="how-it-works" id="process">
+
+            <div class="container">
+
+                <div class="section-heading center">
+
+                    <span class="eyebrow">
+                        How It Works
+                    </span>
+
+                    <h2>
+                        Four simple steps
+                    </h2>
+
+                    <p>
+                        JANSEVA keeps the process straightforward from
+                        discovery to completion.
+                    </p>
+
+                </div>
+
+
+                <div class="steps">
+
+                    <div class="step">
+
+                        <div class="step-number">
+                            1
+                        </div>
+
+                        <h3>Find</h3>
+
+                        <p>
+                            Search for the public service you require.
+                        </p>
+
+                    </div>
+
+
+                    <div class="step">
+
+                        <div class="step-number">
+                            2
+                        </div>
+
+                        <h3>Apply</h3>
+
+                        <p>
+                            Enter the required details and submit your request.
+                        </p>
+
+                    </div>
+
+
+                    <div class="step">
+
+                        <div class="step-number">
+                            3
+                        </div>
+
+                        <h3>Track</h3>
+
+                        <p>
+                            Check updates without repeatedly visiting an office.
+                        </p>
+
+                    </div>
+
+
+                    <div class="step">
+
+                        <div class="step-number">
+                            4
+                        </div>
+
+                        <h3>Complete</h3>
+
+                        <p>
+                            Receive the final update when your request is processed.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SECURITY
+        ========================== -->
+
+        <section class="security">
+
+            <div class="container security-grid">
+
+                <div>
+
+                    <span class="eyebrow">
+                        Built With Trust
+                    </span>
+
+                    <h2>
+                        Your information deserves careful handling.
+                    </h2>
+
+                    <p class="security-text">
+                        JANSEVA is designed around controlled access,
+                        transparent activity and responsible handling of
+                        citizen information.
+                    </p>
+
+                    <div class="security-points">
+
+                        <div class="security-point">
+                            <i class="fa-solid fa-circle-check"></i>
+                            Access is based on user roles
+                        </div>
+
+                        <div class="security-point">
+                            <i class="fa-solid fa-circle-check"></i>
+                            Important actions can be recorded
+                        </div>
+
+                        <div class="security-point">
+                            <i class="fa-solid fa-circle-check"></i>
+                            Citizens can follow request progress
+                        </div>
+
+                        <div class="security-point">
+                            <i class="fa-solid fa-circle-check"></i>
+                            Designed with privacy in mind
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="security-box">
+
+                    <div class="security-row">
+
+                        <div class="security-row-left">
+
+                            <div class="security-row-icon">
+                                <i class="fa-solid fa-user-shield"></i>
+                            </div>
+
+                            <div>
+                                <h4>Account Protection</h4>
+                                <p>Controlled access</p>
+                            </div>
+
+                        </div>
+
+                        <span class="status">
+                            ACTIVE
+                        </span>
+
+                    </div>
+
+
+                    <div class="security-row">
+
+                        <div class="security-row-left">
+
+                            <div class="security-row-icon">
+                                <i class="fa-solid fa-clock-rotate-left"></i>
+                            </div>
+
+                            <div>
+                                <h4>Activity History</h4>
+                                <p>Track important actions</p>
+                            </div>
+
+                        </div>
+
+                        <span class="status">
+                            ENABLED
+                        </span>
+
+                    </div>
+
+
+                    <div class="security-row">
+
+                        <div class="security-row-left">
+
+                            <div class="security-row-icon">
+                                <i class="fa-solid fa-lock"></i>
+                            </div>
+
+                            <div>
+                                <h4>Secure Sessions</h4>
+                                <p>Protected user access</p>
+                            </div>
+
+                        </div>
+
+                        <span class="status">
+                            ACTIVE
+                        </span>
+
+                    </div>
+
+
+                    <div class="security-row">
+
+                        <div class="security-row-left">
+
+                            <div class="security-row-icon">
+                                <i class="fa-solid fa-eye"></i>
+                            </div>
+
+                            <div>
+                                <h4>Request Visibility</h4>
+                                <p>Status updates</p>
+                            </div>
+
+                        </div>
+
+                        <span class="status">
+                            READY
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             PORTALS
+        ========================== -->
+
+        <section class="portals">
+
+            <div class="container">
+
+                <div class="section-heading center">
+
+                    <span class="eyebrow">
+                        Access Portal
+                    </span>
+
+                    <h2>
+                        Choose your workspace
+                    </h2>
+
+                    <p>
+                        Different users can access the tools relevant to
+                        their role.
+                    </p>
+
+                </div>
+
+
+                <div class="portal-grid">
+
+                    <div class="portal">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        <h3>Citizen Portal</h3>
+
+                        <p>
+                            Apply for services, manage requests and check
+                            application progress.
+                        </p>
+
+                        <a href="/auth/citizenlogin"
+                           class="btn btn-primary">
+                            Citizen Sign In
+                        </a>
+
+                    </div>
+
+
+                    <div class="portal">
+
+                        <i class="fa-solid fa-user-tie"></i>
+
+                        <h3>Officer Portal</h3>
+
+                        <p>
+                            Review assigned requests and manage service
+                            processing workflows.
+                        </p>
+
+                        <a href="/auth/officerlogin"
+                           class="btn btn-primary">
+                            Officer Sign In
+                        </a>
+
+                    </div>
+
+
+                    <div class="portal">
+
+                        <i class="fa-solid fa-chart-pie"></i>
+
+                        <h3>Admin Portal</h3>
+
+                        <p>
+                            Manage platform activity, users and administrative
+                            controls.
+                        </p>
+
+                        <a href="/auth/adminlogin"
+                           class="btn btn-primary">
+                            Admin Sign In
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CONTACT
+        ========================== -->
+
+        <section class="contact" id="contact">
+
+            <div class="container">
+
+                <div class="contact-grid">
+
+                    <div class="contact-info">
+
+                        <div class="section-heading">
+
+                            <span class="eyebrow">
+                                Help & Support
+                            </span>
+
+                            <h2>
+                                Need assistance?
+                            </h2>
+
+                            <p>
+                                If you have a question about the platform,
+                                send us a message and our support team can
+                                help guide you.
+                            </p>
+
+                        </div>
+
+
+                        <div class="contact-item">
+
+                            <div class="contact-item-icon">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+
+                            <div>
+                                <h4>Office</h4>
+                                <p>
+                                    Public Service Support Centre<br>
+                                    New Delhi, India
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="contact-item">
+
+                            <div class="contact-item-icon">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+
+                            <div>
+                                <h4>Email</h4>
+                                <p>
+                                    help@janseva.example
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="contact-item">
+
+                            <div class="contact-item-icon">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+
+                            <div>
+                                <h4>Support</h4>
+                                <p>
+                                    Mon - Fri, 9:00 AM - 6:00 PM
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="contact-form">
+
+                        <form id="contactForm">
+
+                            <div class="form-row">
+
+                                <div class="form-group">
+
+                                    <label for="name">
+                                        Full Name
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        id="name"
+                                        name="name"
+                                        placeholder="Enter your name"
+                                        required
+                                    >
+
+                                </div>
+
+
+                                <div class="form-group">
+
+                                    <label for="email">
+                                        Email Address
+                                    </label>
+
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        placeholder="Enter your email"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="category">
+                                    Query Type
+                                </label>
+
+                                <select id="category" name="category">
+
+                                    <option value="">
+                                        Select a category
+                                    </option>
+
+                                    <option>
+                                        Account Help
+                                    </option>
+
+                                    <option>
+                                        Application Support
+                                    </option>
+
+                                    <option>
+                                        Technical Issue
+                                    </option>
+
+                                    <option>
+                                        General Question
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="message">
+                                    Message
+                                </label>
+
+                                <textarea
+                                    id="message"
+                                    name="message"
+                                    rows="6"
+                                    placeholder="Tell us how we can help..."
+                                    required
+                                ></textarea>
+
+                            </div>
+
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary"
+                            >
+                                <i class="fa-solid fa-paper-plane"></i>
+                                Send Request
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+
+                    <div class="brand">
+
+                        <div class="brand-icon">
+                            <i class="fa-solid fa-building-columns"></i>
+                        </div>
+
+                        <div class="brand-text">
+                            <strong style="color:white;">
+                                JANSEVA
+                            </strong>
+
+                            <span style="color:#758298;">
+                                Public Service Hub
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <p>
+                        A digital public-service interface created to make
+                        government service journeys easier to understand
+                        and manage.
+                    </p>
+
+                </div>
+
+
+                <div>
+
+                    <h4>Platform</h4>
+
+                    <ul>
+                        <li><a href="#about">Overview</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#process">How It Works</a></li>
+                        <li><a href="#contact">Support</a></li>
+                    </ul>
+
+                </div>
+
+
+                <div>
+
+                    <h4>Portals</h4>
+
+                    <ul>
+                        <li>
+                            <a href="/auth/citizenlogin">
+                                Citizen Login
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/auth/officerlogin">
+                                Officer Login
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/auth/adminlogin">
+                                Admin Login
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+
+
+                <div>
+
+                    <h4>Connect</h4>
+
+                    <div class="socials">
+
+                        <a href="#" aria-label="Facebook">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+
+                        <a href="#" aria-label="Twitter">
+                            <i class="fa-brands fa-x-twitter"></i>
+                        </a>
+
+                        <a href="#" aria-label="LinkedIn">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
+
+                        <a href="#" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <span>
+                    © 2026 JANSEVA. All rights reserved.
+                </span>
+
+                <span>
+                    Digital Public Service Platform
+                </span>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        Your message has been received.
+    </div>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+        const menuButton = document.getElementById("menuButton");
+        const navMenu = document.getElementById("navMenu");
+
+        menuButton.addEventListener("click", function () {
+
+            navMenu.classList.toggle("active");
+
+            const icon = menuButton.querySelector("i");
+
+            if (navMenu.classList.contains("active")) {
+                icon.classList.remove("fa-bars");
+                icon.classList.add("fa-xmark");
+            } else {
+                icon.classList.remove("fa-xmark");
+                icon.classList.add("fa-bars");
+            }
+
+        });
+
+
+        // Close mobile menu after clicking a navigation link
+
+        document.querySelectorAll(".nav-menu a").forEach(function (link) {
+
+            link.addEventListener("click", function () {
+
+                navMenu.classList.remove("active");
+
+                const icon = menuButton.querySelector("i");
+
+                icon.classList.remove("fa-xmark");
+                icon.classList.add("fa-bars");
+
+            });
+
+        });
+
+
+        // Contact form demo
+
+        const contactForm = document.getElementById("contactForm");
+        const toast = document.getElementById("toast");
+
+        contactForm.addEventListener("submit", function (event) {
+
+            event.preventDefault();
+
+            toast.classList.add("show");
+
+            contactForm.reset();
+
+            setTimeout(function () {
+                toast.classList.remove("show");
+            }, 3000);
+
+        });
+
+
+        // Add a small shadow when scrolling
+
+        const navbar = document.querySelector(".navbar");
+
+        window.addEventListener("scroll", function () {
+
+            if (window.scrollY > 20) {
+                navbar.style.boxShadow =
+                    "0 8px 25px rgba(20, 32, 52, 0.08)";
+            } else {
+                navbar.style.boxShadow = "none";
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>

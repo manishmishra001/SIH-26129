@@ -1,0 +1,1102 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citizen Registration - SETU</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f4f6f8;
+            min-height: 100vh;
+            color: #222;
+        }
+
+        /* ==============================
+           TOP GOVERNMENT STRIP
+        ============================== */
+
+        .top-strip {
+            height: 6px;
+            background: linear-gradient(
+                to right,
+                #ff9933 0%,
+                #ff9933 33.33%,
+                #ffffff 33.33%,
+                #ffffff 66.66%,
+                #138808 66.66%,
+                #138808 100%
+            );
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* ==============================
+           HEADER
+        ============================== */
+
+        .gov-header {
+            background: #ffffff;
+            border-bottom: 1px solid #d6d6d6;
+            padding: 12px 5%;
+        }
+
+        .header-inner {
+            max-width: 1150px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .government-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .emblem {
+            width: 58px;
+            height: 58px;
+            border: 2px solid #777;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+            font-size: 26px;
+            background: #fafafa;
+        }
+
+        .brand-text h2 {
+            font-size: 19px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 3px;
+        }
+
+        .brand-text p {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .digital-india {
+            text-align: right;
+        }
+
+        .digital-india strong {
+            display: block;
+            font-size: 17px;
+            color: #164a7b;
+            font-weight: 700;
+        }
+
+        .digital-india span {
+            font-size: 11px;
+            color: #777;
+        }
+
+        /* ==============================
+           NAVIGATION
+        ============================== */
+
+        .gov-nav {
+            background: #164a7b;
+            border-bottom: 3px solid #ff9933;
+        }
+
+        .nav-inner {
+            max-width: 1150px;
+            margin: auto;
+            min-height: 43px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 15px;
+        }
+
+        .nav-title {
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .nav-right {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-right a {
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .nav-right a:hover {
+            text-decoration: underline;
+        }
+
+        /* ==============================
+           MAIN
+        ============================== */
+
+        .page-wrapper {
+            max-width: 1000px;
+            margin: 30px auto 50px;
+            padding: 0 18px;
+        }
+
+        /* ==============================
+           BREADCRUMB
+        ============================== */
+
+        .breadcrumb {
+            background: #ffffff;
+            border: 1px solid #ddd;
+            padding: 10px 14px;
+            margin-bottom: 15px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .breadcrumb a {
+            color: #164a7b;
+            text-decoration: none;
+        }
+
+        .breadcrumb i {
+            margin: 0 7px;
+            font-size: 9px;
+            color: #999;
+        }
+
+        /* ==============================
+           REGISTRATION CONTAINER
+        ============================== */
+
+        .registration-container {
+            background: #ffffff;
+            border: 1px solid #d4d4d4;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+        }
+
+        /* ==============================
+           PAGE HEADER
+        ============================== */
+
+        .registration-header {
+            background: #f7f8fa;
+            border-bottom: 1px solid #d5d5d5;
+            padding: 25px 35px 22px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #164a7b;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .logo i {
+            font-size: 23px;
+            color: #ff9933;
+        }
+
+        .registration-header h1 {
+            font-size: 25px;
+            font-weight: 600;
+            color: #222;
+            margin-bottom: 6px;
+        }
+
+        .registration-header p {
+            color: #666;
+            font-size: 13px;
+        }
+
+        /* ==============================
+           FORM AREA
+        ============================== */
+
+        #registrationForm {
+            padding: 30px 35px 35px;
+        }
+
+        .step-indicator {
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 5px;
+            background: #e2e2e2;
+            overflow: hidden;
+            margin-bottom: 28px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #164a7b;
+            width: 33%;
+        }
+
+        /* ==============================
+           ERROR MESSAGE
+        ============================== */
+
+        #registrationForm > div[style*="color: red"] {
+            background: #fff2f2 !important;
+            border: 1px solid #e0a0a0;
+            border-left: 5px solid #c62828;
+            color: #a71919 !important;
+            padding: 12px 15px;
+            text-align: left !important;
+            margin-bottom: 22px !important;
+        }
+
+        #registrationForm > div[style*="color: red"] li {
+            margin: 3px 0;
+            font-size: 13px;
+        }
+
+        /* ==============================
+           FORM ROW
+        ============================== */
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+        }
+
+        .form-row.full {
+            grid-template-columns: 1fr;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: 600;
+            color: #333;
+            font-size: 13px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 11px 12px;
+            border: 1px solid #bdbdbd;
+            border-radius: 2px;
+            font-size: 14px;
+            color: #333;
+            background: #fff;
+            font-family: inherit;
+            transition: border-color 0.2s ease,
+                        box-shadow 0.2s ease;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #999;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #164a7b;
+            box-shadow: 0 0 0 2px rgba(22, 74, 123, 0.10);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 85px;
+        }
+
+        /* ==============================
+           PASSWORD
+        ============================== */
+
+        .password-toggle {
+            position: relative;
+        }
+
+        .password-toggle input {
+            padding-right: 45px;
+        }
+
+        .toggle-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: #666;
+            font-size: 15px;
+        }
+
+        .toggle-btn:hover {
+            color: #164a7b;
+        }
+
+        /* ==============================
+           SECTION SEPARATORS
+        ============================== */
+
+        .form-row::before {
+            display: none;
+        }
+
+        /* ==============================
+           TERMS
+        ============================== */
+
+        .terms-section {
+            background: #f8f9fa;
+            padding: 16px;
+            border: 1px solid #d8d8d8;
+            margin: 8px 0 25px;
+        }
+
+        .terms-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .terms-checkbox + .terms-checkbox {
+            margin-top: 12px !important;
+        }
+
+        .terms-checkbox input[type="checkbox"] {
+            margin-top: 3px;
+            cursor: pointer;
+            width: 16px;
+            height: 16px;
+            accent-color: #164a7b;
+            flex-shrink: 0;
+        }
+
+        .terms-checkbox label {
+            margin: 0;
+            font-size: 12px;
+            line-height: 1.6;
+            cursor: pointer;
+            font-weight: 400;
+            color: #444;
+        }
+
+        .terms-checkbox a {
+            color: #164a7b;
+            text-decoration: underline;
+        }
+
+        /* ==============================
+           BUTTON
+        ============================== */
+
+        .register-btn {
+            width: 100%;
+            padding: 12px 20px;
+            background: #164a7b;
+            color: white;
+            border: none;
+            border-radius: 2px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            margin-bottom: 15px;
+        }
+
+        .register-btn:hover {
+            background: #103b63;
+        }
+
+        .register-btn i {
+            margin-right: 6px;
+        }
+
+        /* ==============================
+           LOGIN
+        ============================== */
+
+        .login-redirect {
+            text-align: center;
+            color: #666;
+            font-size: 13px;
+        }
+
+        .login-redirect a {
+            color: #164a7b;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login-redirect a:hover {
+            text-decoration: underline;
+        }
+
+        /* ==============================
+           BACK LINK
+        ============================== */
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            color: #164a7b;
+            text-decoration: none;
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        /* ==============================
+           FOOTER
+        ============================== */
+
+        .gov-footer {
+            background: #263746;
+            color: #fff;
+            border-top: 4px solid #138808;
+            padding: 20px;
+        }
+
+        .footer-inner {
+            max-width: 1000px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .footer-inner p {
+            font-size: 11px;
+            color: #d5d5d5;
+            margin: 4px 0;
+        }
+
+        .footer-links {
+            margin-bottom: 8px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 12px;
+            margin: 0 8px;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* ==============================
+           MOBILE
+        ============================== */
+
+        @media (max-width: 700px) {
+
+            .header-inner {
+                align-items: flex-start;
+            }
+
+            .digital-india {
+                display: none;
+            }
+
+            .government-brand {
+                gap: 10px;
+            }
+
+            .emblem {
+                width: 45px;
+                height: 45px;
+                font-size: 20px;
+            }
+
+            .brand-text h2 {
+                font-size: 15px;
+            }
+
+            .brand-text p {
+                font-size: 10px;
+            }
+
+            .nav-inner {
+                min-height: 40px;
+            }
+
+            .nav-right {
+                gap: 10px;
+            }
+
+            .nav-right a {
+                font-size: 11px;
+            }
+
+            .page-wrapper {
+                margin-top: 18px;
+                padding: 0 10px;
+            }
+
+            .registration-header {
+                padding: 20px;
+            }
+
+            .registration-header h1 {
+                font-size: 21px;
+            }
+
+            #registrationForm {
+                padding: 22px 20px 25px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .form-group {
+                margin-bottom: 17px;
+            }
+
+            .breadcrumb {
+                font-size: 11px;
+            }
+        }
+
+        @media (max-width: 420px) {
+
+            .nav-right a:not(:last-child) {
+                display: none;
+            }
+
+            .registration-header h1 {
+                font-size: 19px;
+            }
+
+            .logo {
+                font-size: 19px;
+            }
+
+            .registration-header p {
+                font-size: 12px;
+            }
+
+            #registrationForm {
+                padding: 20px 15px 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Government Tricolour Strip -->
+    <div class="top-strip"></div>
+
+    <!-- Government Header -->
+    <header class="gov-header">
+        <div class="header-inner">
+
+            <div class="government-brand">
+                <div class="emblem">
+                    <i class="fas fa-landmark"></i>
+                </div>
+
+                <div class="brand-text">
+                    <h2>Government Services Portal</h2>
+                    <p>Digital access to citizen services</p>
+                </div>
+            </div>
+
+            <div class="digital-india">
+                <strong>SETU</strong>
+                <span>Secure &amp; Easy Technology for Unified Services</span>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="gov-nav">
+        <div class="nav-inner">
+
+            <div class="nav-title">
+                <i class="fas fa-home"></i>
+                Citizen Services
+            </div>
+
+            <div class="nav-right">
+                <a href="/">Home</a>
+                <a href="/auth/citizenlogin">Login</a>
+                <a href="#">Help</a>
+            </div>
+
+        </div>
+    </nav>
+
+
+    <!-- Main Content -->
+    <main class="page-wrapper">
+
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <a href="/">Home</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="/auth/citizenlogin">Citizen Login</a>
+            <i class="fas fa-chevron-right"></i>
+            Citizen Registration
+        </div>
+
+
+        <div class="registration-container">
+
+            <div class="registration-header">
+
+                <div class="logo">
+                    <i class="fas fa-network-wired"></i>
+                    SETU
+                </div>
+
+                <h1>Citizen Registration</h1>
+
+                <p>
+                    Create your citizen account to access government services
+                    through the SETU platform.
+                </p>
+
+            </div>
+
+
+            <form id="registrationForm"
+                  action="/auth/citizenregister"
+                  method="post">
+
+                <a href="/auth/citizenlogin " class="back-link">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Login
+                </a>
+
+
+                <div class="step-indicator">
+                    Step 1 of 3: Personal Information
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+
+
+                <% if (errors && errors.length > 0) { %>
+
+                    <div style="color: red; margin-bottom: 15px; text-align: center;">
+
+                        <ul style="list-style-type: none; padding: 0;">
+
+                            <% errors.forEach(function(error) { %>
+
+                                <li><%= error %></li>
+
+                            <% }); %>
+
+                        </ul>
+
+                    </div>
+
+                <% } %>
+
+
+                <!-- Personal Information Section -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="firstName">
+                            First Name *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="firstName"
+                            name="firstName"
+                            value="<%= oldInput.firstName ? oldInput.firstName : '' %>"
+                            placeholder="Enter your first name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="lastName">
+                            Last Name *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="lastName"
+                            name="lastName"
+                            value="<%= oldInput.lastName ? oldInput.lastName : '' %>"
+                            placeholder="Enter your last name"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label for="email">
+                        Email Address *
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value="<%= oldInput.email ? oldInput.email : '' %>"
+                        placeholder="Enter your email address"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label for="phone">
+                        Phone Number *
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        value="<%= oldInput.phone ? oldInput.phone : '' %>"
+                        placeholder="+91 XXXXX XXXXX"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="dob">
+                            Date of Birth *
+                        </label>
+
+                        <input
+                            type="date"
+                            id="dob"
+                            name="dob"
+                            value="<%= oldInput.dob ? oldInput.dob : '' %>"
+                            required
+                        >
+
+                    </div>
+
+                                    
+                                        <div class="form-group">
+                                        
+                        <label for="gender">
+        Gender *
+                        </label>
+                    
+                        <select
+                            id="gender"
+                            name="gender"
+                            required
+                        >
+                    
+                           <option value="">Select gender</option>
+                    
+                            <option value="male" <%= oldInput.gender === 'male' ? 'selected' : '' %>>
+                                Male
+                            </option>
+                        
+                            <option value="female" <%= oldInput.gender === 'female' ? 'selected' : '' %>>                   
+            Female
+                            </option>
+                        
+                            <option value="other" <%= oldInput.gender === 'other' ? 'selected' : '' %>>                 
+            Other
+                            </option>
+                        
+                        </select>
+                    
+                    </div>                  
+
+                </div>
+
+
+                <!-- Identification Section -->
+
+                <div class="form-group full">
+
+                    <label for="aadhaar">
+                        Aadhaar Number (Last 4 digits) *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="aadhaar"
+                        name="aadhaarlast4"
+                        value="<%= oldInput.aadhaarlast4 ? oldInput.aadhaarlast4 : '' %>"
+                        placeholder="Enter last 4 digits"
+                        maxlength="4"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Address Section -->
+
+                <div class="form-group full">
+
+                    <label for="address">
+                        Address *
+                    </label>
+
+                    <textarea
+                        type="text"
+                        id="address"
+                        name="address"
+                        placeholder="Enter your full address"
+                        rows="3"
+                        required
+                    ><%= oldInput.address ? oldInput.address : '' %></textarea>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="city">
+                            City *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="city"
+                            name="city"
+                            value="<%= oldInput.city ? oldInput.city : '' %>"
+                            placeholder="Enter your city"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="state">
+                            State *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="state"
+                            name="state"
+                            value="<%= oldInput.state ? oldInput.state : '' %>"
+                            placeholder="Enter your state"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- Password Section -->
+
+                <div class="form-group full">
+
+                    <label for="password">
+                        Create Password *
+                    </label>
+
+                    <div class="password-toggle">
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Minimum 6 characters"
+                            required
+                            minlength="6"
+                        >
+
+                        <button
+                            type="button"
+                            class="toggle-btn"
+                            onclick="togglePassword()"
+                        >
+                            <i class="fas fa-eye"></i>
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label for="confirmPassword">
+                        Confirm Password *
+                    </label>
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        placeholder="Re-enter your password"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Terms and Conditions -->
+
+                <div class="terms-section">
+
+                    <div class="terms-checkbox">
+
+                        <input
+                            type="checkbox"
+                            id="terms"
+                            required
+                        >
+
+                        <label for="terms">
+
+                            I agree to SETU's
+                            <a href="#">Terms of Service</a>
+                            and
+                            <a href="#">Privacy Policy</a>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="terms-checkbox" style="margin-top: 12px;">
+
+                        <input
+                            type="checkbox"
+                            id="consent"
+                            required
+                        >
+
+                        <label for="consent">
+
+                            I consent to data sharing across government departments
+                            for service delivery
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <button type="submit" class="register-btn">
+
+                    <i class="fas fa-user-plus"></i>
+                    Create Account
+
+                </button>
+
+
+                <div class="login-redirect">
+
+                    Already have an account?
+
+                    <a href="/auth/citizenlogin">
+                        Login here
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </main>
+
+
+    <!-- Footer -->
+
+    <footer class="gov-footer">
+
+        <div class="footer-inner">
+
+            <div class="footer-links">
+
+                <a href="#">Privacy Policy</a>
+                |
+                <a href="#">Terms of Use</a>
+                |
+                <a href="#">Accessibility</a>
+                |
+                <a href="#">Help</a>
+
+            </div>
+
+            <p>
+                © SETU - Secure Government Services Portal
+            </p>
+
+            <p>
+                This portal is designed to provide citizens with secure
+                access to government services.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    
+
+</body>
+</html>
+

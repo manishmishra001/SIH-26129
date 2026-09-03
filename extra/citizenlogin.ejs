@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>Citizen Login - SETU</title>
+
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f4f6f8;
+        color: #333;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    /* Top bar */
+    .top-bar {
+        background: #17365d;
+        color: white;
+        padding: 7px 5%;
+        font-size: 13px;
+    }
+
+    .top-bar-content {
+        max-width: 1200px;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .top-links {
+        display: flex;
+        gap: 20px;
+    }
+
+    .top-links a {
+        color: white;
+    }
+
+    .top-links a:hover {
+        text-decoration: underline;
+    }
+
+    /* Header */
+    header {
+        background: white;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .header-content {
+        max-width: 1200px;
+        margin: auto;
+        padding: 16px 5%;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .brand-icon {
+        width: 52px;
+        height: 52px;
+        border: 1px solid #ccc;
+        border-radius: 50%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        color: #17365d;
+        font-size: 24px;
+    }
+
+    .brand h1 {
+        color: #17365d;
+        font-size: 24px;
+        margin-bottom: 3px;
+    }
+
+    .brand p {
+        color: #666;
+        font-size: 12px;
+    }
+
+    .home-btn {
+        border: 1px solid #ccc;
+        background: white;
+        color: #333;
+        padding: 9px 15px;
+        border-radius: 3px;
+        font-size: 13px;
+    }
+
+    .home-btn:hover {
+        background: #f2f2f2;
+    }
+
+    /* Tricolor line */
+    .tricolor {
+        display: flex;
+        height: 3px;
+    }
+
+    .saffron {
+        flex: 1;
+        background: #e87518;
+    }
+
+    .middle {
+        flex: 1;
+        background: white;
+    }
+
+    .green {
+        flex: 1;
+        background: #138808;
+    }
+
+    /* Main */
+    main {
+        max-width: 1200px;
+        min-height: calc(100vh - 190px);
+        margin: auto;
+        padding: 45px 5%;
+    }
+
+    .breadcrumb {
+        font-size: 13px;
+        color: #777;
+        margin-bottom: 25px;
+    }
+
+    .breadcrumb a {
+        color: #155a96;
+    }
+
+    .breadcrumb i {
+        margin: 0 7px;
+        font-size: 10px;
+    }
+
+    .login-section {
+        display: grid;
+        grid-template-columns: 1fr 420px;
+        gap: 60px;
+        align-items: center;
+    }
+
+    /* Left side */
+    .welcome h2 {
+        color: #17365d;
+        font-size: 32px;
+        margin-bottom: 15px;
+    }
+
+    .welcome p {
+        color: #666;
+        line-height: 1.7;
+        font-size: 15px;
+        max-width: 600px;
+        margin-bottom: 25px;
+    }
+
+    .services {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        max-width: 600px;
+    }
+
+    .service {
+        background: white;
+        border: 1px solid #ddd;
+        padding: 15px;
+        display: flex;
+        gap: 12px;
+    }
+
+    .service i {
+        color: #155a96;
+        font-size: 18px;
+        margin-top: 2px;
+    }
+
+    .service h3 {
+        font-size: 14px;
+        color: #333;
+        margin-bottom: 5px;
+    }
+
+    .service p {
+        font-size: 12px;
+        line-height: 1.4;
+        color: #777;
+        margin: 0;
+    }
+
+    /* Login box */
+    .login-box {
+        background: white;
+        border: 1px solid #d6d6d6;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .login-heading {
+        background: #f7f8f9;
+        border-bottom: 1px solid #ddd;
+        padding: 20px 25px;
+    }
+
+    .login-heading h2 {
+        color: #17365d;
+        font-size: 21px;
+        margin-bottom: 5px;
+    }
+
+    .login-heading p {
+        color: #777;
+        font-size: 13px;
+    }
+
+    .login-form {
+        padding: 25px;
+    }
+
+    .form-group {
+        margin-bottom: 18px;
+    }
+
+    .form-group label {
+        display: block;
+        color: #333;
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 7px;
+    }
+
+    .form-group input {
+        width: 100%;
+        height: 44px;
+
+        border: 1px solid #bbb;
+        border-radius: 3px;
+
+        padding: 0 12px;
+        font-size: 14px;
+
+        outline: none;
+    }
+
+    .form-group input:focus {
+        border-color: #155a96;
+        box-shadow: 0 0 0 2px rgba(21, 90, 150, 0.1);
+    }
+
+    .password-field {
+        position: relative;
+    }
+
+    .password-field input {
+        padding-right: 42px;
+    }
+
+    .password-toggle {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+
+        border: none;
+        background: none;
+
+        color: #777;
+        cursor: pointer;
+    }
+
+    .password-toggle:hover {
+        color: #155a96;
+    }
+
+    .form-options {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        font-size: 13px;
+        margin-bottom: 20px;
+    }
+
+    .remember {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        color: #666;
+    }
+
+    .remember input {
+        accent-color: #155a96;
+    }
+
+    .forgot {
+        color: #155a96;
+        font-weight: 600;
+    }
+
+    .forgot:hover {
+        text-decoration: underline;
+    }
+
+    .login-btn {
+        width: 100%;
+        height: 44px;
+
+        border: none;
+        border-radius: 3px;
+
+        background: #155a96;
+        color: white;
+
+        font-size: 14px;
+        font-weight: 600;
+
+        cursor: pointer;
+    }
+
+    .login-btn:hover {
+        background: #104a7c;
+    }
+
+    /* Other login options */
+    .divider {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        color: #999;
+        font-size: 11px;
+
+        margin: 22px 0 16px;
+    }
+
+    .divider::before,
+    .divider::after {
+        content: "";
+        height: 1px;
+        background: #ddd;
+        flex: 1;
+    }
+
+    .login-methods {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .method-btn {
+        height: 42px;
+
+        background: white;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+
+        color: #444;
+        font-size: 12px;
+        font-weight: 600;
+
+        cursor: pointer;
+    }
+
+    .method-btn:hover {
+        background: #f5f6f7;
+        border-color: #aaa;
+    }
+
+    .method-btn i {
+        color: #155a96;
+        margin-right: 5px;
+    }
+
+    /* Register */
+    .register {
+        text-align: center;
+
+        border-top: 1px solid #eee;
+
+        margin-top: 22px;
+        padding-top: 18px;
+
+        font-size: 13px;
+        color: #666;
+    }
+
+    .register a {
+        color: #155a96;
+        font-weight: 600;
+        margin-left: 4px;
+    }
+
+    .register a:hover {
+        text-decoration: underline;
+    }
+
+    /* Security note */
+    .security-note {
+        background: #f1f6fa;
+        border-left: 3px solid #155a96;
+
+        padding: 11px;
+
+        margin-top: 18px;
+
+        color: #666;
+        font-size: 11px;
+        line-height: 1.5;
+    }
+
+    .security-note i {
+        color: #155a96;
+        margin-right: 5px;
+    }
+
+    /* Footer */
+    footer {
+        background: #17365d;
+        color: white;
+        padding: 18px 5%;
+    }
+
+    .footer-content {
+        max-width: 1200px;
+        margin: auto;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+    }
+
+    footer p {
+        color: #dce3ea;
+        font-size: 12px;
+    }
+
+    .footer-links {
+        display: flex;
+        gap: 18px;
+    }
+
+    .footer-links a {
+        color: white;
+        font-size: 12px;
+    }
+
+    .footer-links a:hover {
+        text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 850px) {
+
+        .login-section {
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .welcome {
+            text-align: center;
+        }
+
+        .welcome p {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .services {
+            margin: auto;
+            text-align: left;
+        }
+
+        .login-box {
+            width: 100%;
+            max-width: 480px;
+            margin: auto;
+        }
+    }
+
+    @media (max-width: 600px) {
+
+        .top-bar {
+            padding: 7px 4%;
+        }
+
+        .top-bar-content {
+            justify-content: center;
+        }
+
+        .top-bar-content > span {
+            display: none;
+        }
+
+        .header-content {
+            padding: 13px 4%;
+        }
+
+        .brand-icon {
+            width: 45px;
+            height: 45px;
+            font-size: 20px;
+        }
+
+        .brand h1 {
+            font-size: 20px;
+        }
+
+        .brand p {
+            font-size: 10px;
+        }
+
+        .home-btn {
+            padding: 8px 10px;
+            font-size: 12px;
+        }
+
+        main {
+            padding: 28px 4%;
+        }
+
+        .welcome h2 {
+            font-size: 26px;
+        }
+
+        .welcome p {
+            font-size: 14px;
+        }
+
+        .services {
+            grid-template-columns: 1fr;
+        }
+
+        .login-form {
+            padding: 20px;
+        }
+
+        .login-methods {
+            grid-template-columns: 1fr;
+        }
+
+        .footer-content {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .footer-links {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    }
+
+    @media (max-width: 400px) {
+
+        .top-links {
+            gap: 10px;
+            font-size: 11px;
+        }
+
+        .brand p {
+            display: none;
+        }
+
+        .form-options {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .login-heading {
+            padding: 18px 20px;
+        }
+
+        .login-form {
+            padding: 18px;
+        }
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+<!-- Top bar -->
+<div class="top-bar">
+    <div class="top-bar-content">
+
+        <span>
+            Citizen Services Portal
+        </span>
+
+        <div class="top-links">
+            <a href="#">Accessibility</a>
+            <a href="#">Help</a>
+            <a href="#">हिन्दी</a>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- Header -->
+<header>
+
+    <div class="header-content">
+
+        <a href="/" class="brand">
+
+            <div class="brand-icon">
+                <i class="fas fa-landmark"></i>
+            </div>
+
+            <div>
+                <h1>SETU</h1>
+                <p>Citizen Service Delivery Platform</p>
+            </div>
+
+        </a>
+
+        <a href="/" class="home-btn">
+            <i class="fas fa-home"></i>
+            Home
+        </a>
+
+    </div>
+
+    <div class="tricolor">
+        <div class="saffron"></div>
+        <div class="middle"></div>
+        <div class="green"></div>
+    </div>
+
+</header>
+
+
+<!-- Main content -->
+<main>
+
+    <div class="breadcrumb">
+        <a href="/">
+            <i class="fas fa-home"></i>
+            Home
+        </a>
+
+        <i class="fas fa-chevron-right"></i>
+
+        Citizen Login
+    </div>
+
+
+    <div class="login-section">
+
+        <!-- Welcome section -->
+        <div class="welcome">
+
+            <h2>Welcome to SETU</h2>
+
+            <p>
+                Login to your citizen account to access available
+                government services, submit applications and check
+                the status of your requests.
+            </p>
+
+
+            <div class="services">
+
+                <div class="service">
+
+                    <i class="fas fa-file-lines"></i>
+
+                    <div>
+                        <h3>Online Services</h3>
+                        <p>
+                            Access citizen services from one place.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="service">
+
+                    <i class="fas fa-magnifying-glass"></i>
+
+                    <div>
+                        <h3>Track Applications</h3>
+                        <p>
+                            Check the status of your applications.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="service">
+
+                    <i class="fas fa-user-shield"></i>
+
+                    <div>
+                        <h3>Secure Login</h3>
+                        <p>
+                            Your account is protected with secure
+                            authentication.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="service">
+
+                    <i class="fas fa-clock"></i>
+
+                    <div>
+                        <h3>Easy Access</h3>
+                        <p>
+                            Access services online when you need them.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Login box -->
+        <div class="login-box">
+
+            <div class="login-heading">
+
+                <h2>
+                    <i class="fas fa-right-to-bracket"></i>
+                    Citizen Login
+                </h2>
+
+                <p>
+                    Enter your details to continue
+                </p>
+
+            </div>
+
+
+            <div class="login-form">
+
+                <form
+                    id="loginForm"
+                    action="/auth/citizenlogin"
+                    method="POST"
+                >
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email Address or Mobile Number
+                        </label>
+
+                        <input
+                            type="text"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email or mobile number"
+                            autocomplete="username"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <div class="password-field">
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                onclick="togglePassword()"
+                                aria-label="Show password"
+                            >
+                                <i class="fas fa-eye"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-options">
+
+                        <label class="remember">
+
+                            <input
+                                type="checkbox"
+                                name="remember"
+                            >
+
+                            Remember me
+
+                        </label>
+
+
+                        <a href="#" class="forgot">
+                            Forgot password?
+                        </a>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="login-btn"
+                    >
+                        <i class="fas fa-sign-in-alt"></i>
+                        Login
+                    </button>
+
+                </form>
+
+
+                <div class="divider">
+                    OR
+                </div>
+
+
+                <div class="login-methods">
+
+                    <button
+                        type="button"
+                        class="method-btn"
+                        onclick="alert('DigiLocker integration coming soon')"
+                    >
+                        <i class="fas fa-id-card"></i>
+                        DigiLocker
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="method-btn"
+                        onclick="alert('Aadhaar OTP login coming soon')"
+                    >
+                        <i class="fas fa-fingerprint"></i>
+                        Aadhaar OTP
+                    </button>
+
+                </div>
+
+
+                <div class="register">
+
+                    Don't have an account?
+
+                    <a href="citizen-register.html">
+                        Create an account
+                    </a>
+
+                </div>
+
+
+                <div class="security-note">
+
+                    <i class="fas fa-lock"></i>
+
+                    Never share your password or OTP with anyone.
+                    SETU officials will never ask you to share your
+                    login credentials.
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- Footer -->
+<footer>
+
+    <div class="footer-content">
+
+        <p>
+            © <span id="year"></span> SETU Citizen Service Portal
+        </p>
+
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Use</a>
+            <a href="#">Help</a>
+            <a href="#">Contact Us</a>
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script>
+
+    function togglePassword() {
+
+        const password = document.getElementById("password");
+        const button = document.querySelector(".password-toggle");
+        const icon = button.querySelector("i");
+
+        if (password.type === "password") {
+
+            password.type = "text";
+
+            icon.classList.remove("fa-eye");
+            icon.classList.add("fa-eye-slash");
+
+        } else {
+
+            password.type = "password";
+
+            icon.classList.remove("fa-eye-slash");
+            icon.classList.add("fa-eye");
+
+        }
+    }
+
+    document.getElementById("year").textContent =
+        new Date().getFullYear();
+
+</script>
+
+
+</body>
+
+</html>
